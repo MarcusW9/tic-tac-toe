@@ -4,7 +4,10 @@ const winnerDisplayBtn = document.querySelector("#winner-display-btn")
 const winnerDisplayText = document.querySelector("#winner-display-text") 
 const resetBtn = document.querySelector("#reset-btn")
 
-
+const nameInputDialog = document.querySelector("#name-input")
+const playerOneInput = document.querySelector("#player-one-name")
+const playerTwoInput = document.querySelector("#player-two-name")
+const playerNameDialogBtn = document.querySelector("#name-confirm-btn")
 
 winnerDisplayBtn.addEventListener("click", () => {
     console.log("clicked")
@@ -18,7 +21,6 @@ resetGame = () => {
     winner = null;
     printBoard();
 }
-
 resetBtn.addEventListener("click", resetGame)
 
 const createPlayer = function(playerName, playerSymbol) {
@@ -27,11 +29,20 @@ const createPlayer = function(playerName, playerSymbol) {
     return {name, symbol}
 }
 
-playerO = createPlayer("Marcus", "O")
-playerX = createPlayer("James", "X")
-let active = playerO
-
+//Create players using the player function factory
+playerX = createPlayer("Player 1", "X")
+playerO = createPlayer("Player 2", "O")
 let activePlayer = playerX
+
+//Manage the name modal
+playerNameDialogBtn.addEventListener("click", () => {
+    playerO.name = playerOneInput.value
+    playerX.name = playerTwoInput.value
+    if (playerO.name && playerX.name) {
+        nameInputDialog.close()
+    } 
+})
+
 let winner = null;
 
 let board = ["", "", "", "", "", "", "", "", ""]
