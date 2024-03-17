@@ -19,6 +19,8 @@ resetGame = () => {
     printBoard();
 }
 
+resetBtn.addEventListener("click", resetGame)
+
 const createPlayer = function(playerName, playerSymbol) {
     const name = playerName;
     const symbol = playerSymbol;
@@ -47,20 +49,17 @@ const determineWinner = () => {
         (board[3] !== "" && board[3] === board[4] && board[3] === board[5]) ||
         (board[6] !== "" && board[6] === board[7] && board[6] === board[8])
         ) {
-        console.log(`${activePlayer.name} wins! HERE`);
         winner = activePlayer;
     } 
     // Columns 
     else if ((board[0] !== "" && board[0] === board[3] && board[0] === board[6]) ||
         (board[1] !== "" && board[1] === board[4] && board[1] === board[7]) ||
         (board[2] !== "" && board[2] === board[5] && board[2] === board[8])) {
-        console.log(`${activePlayer.name} wins!`)
         winner = activePlayer;
     } 
     // Diagonals
     else if ((board[0] !== "" && board[0] === board[4] && board[0] === board[8]) ||
         (board[2] !== "" && board[2] === board[4] && board[2] === board[6])) {
-        console.log(`${activePlayer.name} wins!`)
         winner = activePlayer;
     } 
     handleWinner()
@@ -91,8 +90,6 @@ const createCell = function(i) {
 
 printBoard()
 
-
-
 const handleWinner = () => {
     if (winner) {
         winnerDisplayText.innerHTML = `${winner.name} wins!`
@@ -100,10 +97,6 @@ const handleWinner = () => {
     }
 }
 
-
-const gameController = () => {
-
-}
 
 
 
